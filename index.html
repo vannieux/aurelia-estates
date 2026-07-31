@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AURELIA Estates - Exclusive luxury real estate, penthouses, villas, and modern mansions.">
+    <meta name="theme-color" content="#050505">
+    <title>AURELIA Estates | Luxury Real Estate</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        aurelia: {
+                            gold: '#C9A227',
+                            'gold-hover': '#b38f20',
+                            dark: '#050505',
+                            charcoal: '#121212',
+                            light: '#f9f9f9'
+                        }
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 10px 40px -10px rgba(201, 162, 39, 0.15)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans antialiased bg-aurelia-dark text-white selection:bg-aurelia-gold selection:text-white">
+
+    <!-- Navigation -->
+    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent py-6 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 z-50 group">
+                <span class="font-serif text-3xl font-bold tracking-widest text-white group-hover:text-aurelia-gold transition-colors duration-300">AURELIA</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-10 text-sm tracking-widest uppercase font-medium">
+                <a href="#properties" class="hover:text-aurelia-gold transition-colors">Properties</a>
+                <a href="#agents" class="hover:text-aurelia-gold transition-colors">Agents</a>
+                <a href="#calculator" class="hover:text-aurelia-gold transition-colors">Mortgage</a>
+                <a href="#contact" class="hover:text-aurelia-gold transition-colors">Contact</a>
+            </nav>
+
+            <div class="hidden lg:block">
+                <a href="#contact" class="border border-aurelia-gold text-aurelia-gold px-8 py-3 uppercase tracking-widest text-sm hover:bg-aurelia-gold hover:text-white transition-all duration-500">Inquire Now</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden z-50 p-2 text-white hover:text-aurelia-gold transition-colors" aria-label="Menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-aurelia-dark/95 backdrop-blur-xl z-40 hidden flex-col items-center justify-center space-y-10 text-xl font-serif tracking-widest uppercase opacity-0 transition-opacity duration-500">
+            <a href="#properties" class="mobile-link hover:text-aurelia-gold transition-colors">Properties</a>
+            <a href="#agents" class="mobile-link hover:text-aurelia-gold transition-colors">Agents</a>
+            <a href="#calculator" class="mobile-link hover:text-aurelia-gold transition-colors">Mortgage</a>
+            <a href="#contact" class="mobile-link hover:text-aurelia-gold transition-colors">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <!-- Video Background -->
+        <div class="absolute inset-0 w-full h-full bg-black">
+            <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-60 mix-blend-luminosity">
+                <source src="https://player.vimeo.com/external/517090081.hd.mp4?s=d00e5e01bd9b5e5c70c679b37a1f59265f0fc882&profile_id=175" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-aurelia-dark"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto reveal">
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white leading-tight">
+                Luxury Living <br><span class="italic text-aurelia-gold font-light">Begins Here.</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-12">
+                Curating the world's most exceptional properties for the most discerning clientele.
+            </p>
+        </div>
+    </section>
+
+    <!-- Search Section (Glassmorphism) -->
+    <section class="relative z-20 -mt-24 max-w-6xl mx-auto px-6 lg:px-8 reveal">
+        <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 shadow-glass">
+            <form class="grid grid-cols-1 md:grid-cols-5 gap-6 items-end" onsubmit="event.preventDefault();">
+                <div class="md:col-span-1">
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Intent</label>
+                    <select class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-aurelia-gold transition-colors appearance-none cursor-pointer">
+                        <option class="bg-aurelia-charcoal">Buy</option>
+                        <option class="bg-aurelia-charcoal">Rent</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Location</label>
+                    <select class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-aurelia-gold transition-colors appearance-none cursor-pointer">
+                        <option class="bg-aurelia-charcoal">Monaco</option>
+                        <option class="bg-aurelia-charcoal">Beverly Hills</option>
+                        <option class="bg-aurelia-charcoal">Dubai</option>
+                        <option class="bg-aurelia-charcoal">Swiss Alps</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Property Type</label>
+                    <select class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-aurelia-gold transition-colors appearance-none cursor-pointer">
+                        <option class="bg-aurelia-charcoal">Penthouse</option>
+                        <option class="bg-aurelia-charcoal">Villa</option>
+                        <option class="bg-aurelia-charcoal">Mansion</option>
+                        <option class="bg-aurelia-charcoal">Estate</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Budget</label>
+                    <select class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-aurelia-gold transition-colors appearance-none cursor-pointer">
+                        <option class="bg-aurelia-charcoal">$5M - $10M</option>
+                        <option class="bg-aurelia-charcoal">$10M - $20M</option>
+                        <option class="bg-aurelia-charcoal">$20M+</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <button class="w-full bg-aurelia-gold text-white font-medium py-3 uppercase tracking-widest text-sm hover:bg-white hover:text-aurelia-dark transition-colors duration-300">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-32 bg-aurelia-dark">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Exclusive <span class="italic text-aurelia-gold">Residences</span></h2>
+                    <p class="text-gray-400 font-light max-w-xl">Discover our handpicked selection of the most prestigious properties currently on the market.</p>
+                </div>
+                <a href="#" class="text-aurelia-gold uppercase tracking-widest text-sm border-b border-aurelia-gold pb-1 mt-6 md:mt-0 hover:text-white hover:border-white transition-colors">View All Properties</a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Property 1: Penthouse -->
+                <div class="group cursor-pointer reveal">
+                    <div class="relative overflow-hidden h-[400px] mb-6">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop" alt="Luxury Penthouse" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 text-xs uppercase tracking-widest border border-white/10">For Sale</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-aurelia-gold font-serif text-2xl mb-2">$18,500,000</p>
+                            <h3 class="text-xl font-medium mb-1 group-hover:text-aurelia-gold transition-colors">The Skyfall Penthouse</h3>
+                            <p class="text-gray-400 text-sm font-light mb-4">Monaco City, Monaco</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 border-t border-white/10 pt-4 text-sm text-gray-300">
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> 4 Beds</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg> 5.5 Baths</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg> 650 m²</span>
+                    </div>
+                </div>
+
+                <!-- Property 2: Beach Villa -->
+                <div class="group cursor-pointer reveal delay-100">
+                    <div class="relative overflow-hidden h-[400px] mb-6">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop" alt="Beach Villa" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 text-xs uppercase tracking-widest border border-white/10">For Sale</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-aurelia-gold font-serif text-2xl mb-2">$24,900,000</p>
+                            <h3 class="text-xl font-medium mb-1 group-hover:text-aurelia-gold transition-colors">Azure Coastal Villa</h3>
+                            <p class="text-gray-400 text-sm font-light mb-4">Malibu, California</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 border-t border-white/10 pt-4 text-sm text-gray-300">
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> 6 Beds</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg> 8 Baths</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg> 1,200 m²</span>
+                    </div>
+                </div>
+
+                <!-- Property 3: Modern Mansion -->
+                <div class="group cursor-pointer reveal">
+                    <div class="relative overflow-hidden h-[400px] mb-6">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000&auto=format&fit=crop" alt="Modern Mansion" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 text-xs uppercase tracking-widest border border-white/10">For Rent</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-aurelia-gold font-serif text-2xl mb-2">$150,000 / mo</p>
+                            <h3 class="text-xl font-medium mb-1 group-hover:text-aurelia-gold transition-colors">The Obsidian Estate</h3>
+                            <p class="text-gray-400 text-sm font-light mb-4">Beverly Hills, California</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 border-t border-white/10 pt-4 text-sm text-gray-300">
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> 8 Beds</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg> 10 Baths</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg> 1,850 m²</span>
+                    </div>
+                </div>
+
+                <!-- Property 4: Mountain Retreat -->
+                <div class="group cursor-pointer reveal delay-100">
+                    <div class="relative overflow-hidden h-[400px] mb-6">
+                        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1000&auto=format&fit=crop" alt="Mountain Retreat" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 text-xs uppercase tracking-widest border border-white/10">For Sale</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-aurelia-gold font-serif text-2xl mb-2">$32,000,000</p>
+                            <h3 class="text-xl font-medium mb-1 group-hover:text-aurelia-gold transition-colors">Alpine Crest Chalet</h3>
+                            <p class="text-gray-400 text-sm font-light mb-4">St. Moritz, Switzerland</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 border-t border-white/10 pt-4 text-sm text-gray-300">
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> 5 Beds</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg> 6 Baths</span>
+                        <span class="flex items-center gap-2"><svg class="w-4 h-4 text-aurelia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg> 950 m²</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-24 bg-aurelia-charcoal border-y border-white/5 relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-aurelia-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+                <div class="reveal">
+                    <p class="font-serif text-5xl md:text-6xl text-aurelia-gold mb-4"><span class="counter" data-target="250">0</span>+</p>
+                    <p class="uppercase tracking-widest text-xs text-gray-400">Properties Sold</p>
+                </div>
+                <div class="reveal delay-100">
+                    <p class="font-serif text-5xl md:text-6xl text-aurelia-gold mb-4"><span class="counter" data-target="40">0</span></p>
+                    <p class="uppercase tracking-widest text-xs text-gray-400">Years Experience</p>
+                </div>
+                <div class="reveal delay-200">
+                    <p class="font-serif text-5xl md:text-6xl text-aurelia-gold mb-4"><span class="counter" data-target="1500">0</span>+</p>
+                    <p class="uppercase tracking-widest text-xs text-gray-400">Happy Families</p>
+                </div>
+                <div class="reveal delay-300">
+                    <p class="font-serif text-5xl md:text-6xl text-aurelia-gold mb-4"><span class="counter" data-target="12">0</span></p>
+                    <p class="uppercase tracking-widest text-xs text-gray-400">Luxury Partners</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map (Visual Placeholder) -->
+    <section class="py-32 bg-aurelia-dark">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Global <span class="italic text-aurelia-gold">Presence</span></h2>
+                <p class="text-gray-400 font-light max-w-2xl mx-auto">Operating in the world's most desirable locations.</p>
+            </div>
+            <div class="relative h-[500px] rounded-sm overflow-hidden grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-1000 border border-white/10 reveal">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop" alt="Global Map" class="w-full h-full object-cover">
+                <!-- Map Pins -->
+                <div class="absolute top-[30%] left-[20%] group cursor-pointer">
+                    <div class="w-4 h-4 bg-aurelia-gold rounded-full shadow-[0_0_15px_#C9A227] animate-pulse"></div>
+                    <span class="absolute top-6 -left-4 bg-black/80 px-3 py-1 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/20">Los Angeles</span>
+                </div>
+                <div class="absolute top-[25%] left-[48%] group cursor-pointer">
+                    <div class="w-4 h-4 bg-aurelia-gold rounded-full shadow-[0_0_15px_#C9A227] animate-pulse"></div>
+                    <span class="absolute top-6 -left-2 bg-black/80 px-3 py-1 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/20">London</span>
+                </div>
+                <div class="absolute top-[35%] left-[55%] group cursor-pointer">
+                    <div class="w-4 h-4 bg-aurelia-gold rounded-full shadow-[0_0_15px_#C9A227] animate-pulse"></div>
+                    <span class="absolute top-6 -left-2 bg-black/80 px-3 py-1 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/20">Dubai</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Profiles -->
+    <section id="agents" class="py-32 bg-aurelia-light text-aurelia-dark">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Our <span class="italic text-aurelia-gold">Experts</span></h2>
+                    <p class="text-gray-600 font-light max-w-xl">A team of dedicated professionals committed to delivering unparalleled service.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Agent 1 -->
+                <div class="group reveal">
+                    <div class="overflow-hidden mb-6 h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" alt="Agent" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold mb-1">Alexander Vance</h3>
+                    <p class="text-aurelia-gold uppercase tracking-widest text-xs font-bold mb-4">Managing Director</p>
+                    <p class="text-gray-600 font-light text-sm mb-4 line-clamp-3">With over 20 years in the ultra-luxury market, Alexander has facilitated some of the most significant real estate transactions in Europe.</p>
+                    <a href="mailto:alexander@aurelia.com" class="text-sm font-medium border-b border-aurelia-dark pb-1 hover:text-aurelia-gold hover:border-aurelia-gold transition-colors">Contact Alexander</a>
+                </div>
+                <!-- Agent 2 -->
+                <div class="group reveal delay-100">
+                    <div class="overflow-hidden mb-6 h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Agent" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold mb-1">Eleanor Sterling</h3>
+                    <p class="text-aurelia-gold uppercase tracking-widest text-xs font-bold mb-4">Head of Acquisitions</p>
+                    <p class="text-gray-600 font-light text-sm mb-4 line-clamp-3">Eleanor's discerning eye for architectural pedigree makes her the go-to advisor for clients seeking historically significant properties.</p>
+                    <a href="mailto:eleanor@aurelia.com" class="text-sm font-medium border-b border-aurelia-dark pb-1 hover:text-aurelia-gold hover:border-aurelia-gold transition-colors">Contact Eleanor</a>
+                </div>
+                <!-- Agent 3 -->
+                <div class="group reveal delay-200">
+                    <div class="overflow-hidden mb-6 h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop" alt="Agent" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold mb-1">Julian Pierce</h3>
+                    <p class="text-aurelia-gold uppercase tracking-widest text-xs font-bold mb-4">Senior Broker, Americas</p>
+                    <p class="text-gray-600 font-light text-sm mb-4 line-clamp-3">Julian specializes in West Coast coastal estates, ensuring discreet and seamless acquisitions for high-net-worth individuals.</p>
+                    <a href="mailto:julian@aurelia.com" class="text-sm font-medium border-b border-aurelia-dark pb-1 hover:text-aurelia-gold hover:border-aurelia-gold transition-colors">Contact Julian</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials & Mortgage Calculator -->
+    <section class="py-32 bg-aurelia-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-20">
+            
+            <!-- Testimonials -->
+            <div class="reveal">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-12">Client <span class="italic text-aurelia-gold">Perspectives</span></h2>
+                
+                <div class="space-y-12">
+                    <div class="relative pl-8 border-l-2 border-aurelia-gold">
+                        <svg class="absolute -left-3 top-0 w-6 h-6 text-aurelia-dark bg-aurelia-gold rounded-full p-1" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                        <p class="font-serif text-lg italic text-gray-300 mb-4 leading-relaxed">"Aurelia Estates redefined our expectations. The discretion, access to off-market properties, and seamless execution were flawless."</p>
+                        <div>
+                            <p class="font-bold text-white">Lord Henry W.</p>
+                            <p class="text-xs uppercase tracking-widest text-aurelia-gold mt-1">London</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative pl-8 border-l-2 border-aurelia-gold">
+                        <svg class="absolute -left-3 top-0 w-6 h-6 text-aurelia-dark bg-aurelia-gold rounded-full p-1" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                        <p class="font-serif text-lg italic text-gray-300 mb-4 leading-relaxed">"Acquiring our villa in Monaco was an effortless experience thanks to Alexander's expertise. Truly a world-class operation."</p>
+                        <div>
+                            <p class="font-bold text-white">Sarah & James T.</p>
+                            <p class="text-xs uppercase tracking-widest text-aurelia-gold mt-1">Monaco</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mortgage Calculator -->
+            <div id="calculator" class="bg-aurelia-charcoal p-10 border border-white/10 reveal delay-100">
+                <h2 class="font-serif text-3xl font-bold mb-8">Financial <span class="italic text-aurelia-gold">Calculator</span></h2>
+                <form id="mortgage-form" class="space-y-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Property Value ($)</label>
+                        <input type="number" id="prop-value" value="10000000" class="w-full bg-transparent border-b border-white/20 pb-2 text-white text-xl font-serif focus:outline-none focus:border-aurelia-gold transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Down Payment (%)</label>
+                        <input type="number" id="down-payment" value="20" max="100" class="w-full bg-transparent border-b border-white/20 pb-2 text-white text-xl font-serif focus:outline-none focus:border-aurelia-gold transition-colors">
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Interest Rate (%)</label>
+                            <input type="number" id="interest-rate" value="4.5" step="0.1" class="w-full bg-transparent border-b border-white/20 pb-2 text-white text-xl font-serif focus:outline-none focus:border-aurelia-gold transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Loan Term (Yrs)</label>
+                            <select id="loan-term" class="w-full bg-transparent border-b border-white/20 pb-2 text-white text-xl font-serif focus:outline-none focus:border-aurelia-gold transition-colors appearance-none">
+                                <option value="15" class="bg-aurelia-charcoal">15 Years</option>
+                                <option value="30" class="bg-aurelia-charcoal" selected>30 Years</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-2">Estimated Monthly Payment</p>
+                        <p class="font-serif text-4xl text-aurelia-gold" id="monthly-payment">$40,535</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & Contact -->
+    <section id="contact" class="py-32 bg-aurelia-light text-aurelia-dark">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-20">
+            
+            <!-- FAQ Accordion -->
+            <div class="reveal">
+                <h2 class="font-serif text-4xl font-bold mb-10">Frequently Asked <span class="italic text-aurelia-gold">Questions</span></h2>
+                
+                <div class="space-y-4">
+                    <div class="border-b border-gray-300 pb-4">
+                        <button class="faq-btn w-full text-left flex justify-between items-center font-serif text-xl font-medium focus:outline-none group">
+                            <span class="group-hover:text-aurelia-gold transition-colors">Do you handle off-market properties?</span>
+                            <span class="text-aurelia-gold text-2xl transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 font-light leading-relaxed">
+                            Yes, a significant portion of our portfolio consists of off-market listings available exclusively to our pre-qualified private clientele to ensure absolute discretion.
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-300 pb-4">
+                        <button class="faq-btn w-full text-left flex justify-between items-center font-serif text-xl font-medium focus:outline-none group">
+                            <span class="group-hover:text-aurelia-gold transition-colors">What is your screening process for buyers?</span>
+                            <span class="text-aurelia-gold text-2xl transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 font-light leading-relaxed">
+                            To maintain the privacy of our sellers, we require proof of funds or a letter of reference from a recognized financial institution before arranging viewings of ultra-prime assets.
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-300 pb-4">
+                        <button class="faq-btn w-full text-left flex justify-between items-center font-serif text-xl font-medium focus:outline-none group">
+                            <span class="group-hover:text-aurelia-gold transition-colors">Can you assist with relocation services?</span>
+                            <span class="text-aurelia-gold text-2xl transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 font-light leading-relaxed">
+                            Absolutely. Our concierge team assists with everything from legal representation and tax advisory referrals to staffing and interior design logistics.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="bg-white p-10 shadow-2xl reveal delay-100">
+                <h3 class="font-serif text-3xl font-bold mb-8">Private <span class="italic text-aurelia-gold">Consultation</span></h3>
+                <form class="space-y-6" onsubmit="event.preventDefault();">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <input type="text" placeholder="First Name" required class="w-full bg-transparent border-b border-gray-300 pb-3 text-aurelia-dark font-light focus:outline-none focus:border-aurelia-gold transition-colors placeholder-gray-400">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Last Name" required class="w-full bg-transparent border-b border-gray-300 pb-3 text-aurelia-dark font-light focus:outline-none focus:border-aurelia-gold transition-colors placeholder-gray-400">
+                        </div>
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Email Address" required class="w-full bg-transparent border-b border-gray-300 pb-3 text-aurelia-dark font-light focus:outline-none focus:border-aurelia-gold transition-colors placeholder-gray-400">
+                    </div>
+                    <div>
+                        <select class="w-full bg-transparent border-b border-gray-300 pb-3 text-aurelia-dark font-light focus:outline-none focus:border-aurelia-gold transition-colors appearance-none cursor-pointer">
+                            <option value="" disabled selected class="text-gray-400">Nature of Inquiry</option>
+                            <option>Buying a Property</option>
+                            <option>Selling a Property</option>
+                            <option>General Information</option>
+                        </select>
+                    </div>
+                    <div>
+                        <textarea placeholder="Message" rows="4" class="w-full bg-transparent border-b border-gray-300 pb-3 text-aurelia-dark font-light focus:outline-none focus:border-aurelia-gold transition-colors placeholder-gray-400 resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-aurelia-dark text-white font-medium py-4 uppercase tracking-widest text-sm hover:bg-aurelia-gold transition-colors duration-300">
+                        Submit Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-aurelia-dark pt-24 pb-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                
+                <div class="md:col-span-1">
+                    <span class="font-serif text-3xl font-bold tracking-widest text-white mb-6 block">AURELIA</span>
+                    <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+                        Curating the world's most exceptional properties. Setting the standard for luxury real estate globally.
+                    </p>
+                    <div class="flex gap-4">
+                        <!-- Social Icons -->
+                        <a href="#" class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center text-white hover:border-aurelia-gold hover:text-aurelia-gold transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center text-white hover:border-aurelia-gold hover:text-aurelia-gold transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white uppercase tracking-widest text-xs font-bold mb-6">Offices</h4>
+                    <ul class="space-y-4 text-sm font-light text-gray-400">
+                        <li>New York, NY</li>
+                        <li>Beverly Hills, CA</li>
+                        <li>London, UK</li>
+                        <li>Dubai, UAE</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white uppercase tracking-widest text-xs font-bold mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm font-light text-gray-400">
+                        <li><a href="#" class="hover:text-aurelia-gold transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-aurelia-gold transition-colors">Our Properties</a></li>
+                        <li><a href="#" class="hover:text-aurelia-gold transition-colors">Agents & Partners</a></li>
+                        <li><a href="#" class="hover:text-aurelia-gold transition-colors">Press & Media</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white uppercase tracking-widest text-xs font-bold mb-6">The Journal</h4>
+                    <p class="text-sm font-light text-gray-400 mb-4">Subscribe to our newsletter for exclusive market reports and off-market opportunities.</p>
+                    <form class="relative" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Email Address" required class="w-full bg-transparent border-b border-gray-600 pb-2 text-sm text-white focus:outline-none focus:border-aurelia-gold transition-colors pr-10">
+                        <button type="submit" class="absolute right-0 top-0 text-gray-400 hover:text-aurelia-gold transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light tracking-wide">
+                <p>&copy; 2026 AURELIA Estates. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
